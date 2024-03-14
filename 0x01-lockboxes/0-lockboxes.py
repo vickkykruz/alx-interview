@@ -1,5 +1,4 @@
-
-1;#!/usr/bin/python3
+#!/usr/bin/python3
 """
 This module contains a function that checks if boxes can be lockee
 or unlocked"""
