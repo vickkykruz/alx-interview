@@ -12,7 +12,7 @@ def makeChange(coins, total):
         coins ([list]): A list of coin values available.
         total ([number]): The target amount
     Return:
-        The fewest number of coins needed to reach the total, or -1 
+        The fewest number of coins needed to reach the total, or -1
         if not possible.
     """
 
