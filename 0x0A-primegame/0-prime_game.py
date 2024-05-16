@@ -9,23 +9,29 @@ The player that cannot make a move loses the game.
 
 def isWinner(x, nums):
     """This Prime Game returns the winner """
-    if not nums or x < 1:
+    if x < 1 or not nums:
         return None
+
+    m_wins = 0
+    b_wins = 0
+
+    # generate a list of prime number based on the max numbers in num
     n = max(nums)
-    sieve = [True] * (n + 1)
-    sieve[0] = sieve[1] = False
-    for i in range(2, int(n ** 0.5) + 1):
-        if sieve[i]:
-            for j in range(i * i, n + 1, i):
-                sieve[j] = False
-    sieve = [i for i, prime in enumerate(sieve) if prime]
-    c = 0
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
+
+    for x in range(2, int(n**0.5) + 1):
+        if primes[x]:
+            for y in range(x**2, n + 1, x):
+                primes[y] = False
+
+    # count the no of pm less than n i nums
     for n in nums:
-        for i in range(len(sieve)):
-            if sieve[i] > n:
-                break
-            c += 1
-        if c % 2 == 0:
-            return "Ben"
-        else:
-            return "Maria"
+        count = sum(primes[2:n+1])
+        b_wins += count % 2 == 0
+        m_wins += count % 2 == 1
+
+    if m_wins == b_wins:
+        return None
+
+    return 'Maria' if m_wins > b_wins else 'Ben'
